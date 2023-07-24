@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kattabozor</string>
+    <string name="category">Category: %1$s</string>
+</resources>

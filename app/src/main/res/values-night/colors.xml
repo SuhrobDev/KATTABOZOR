@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="card_color">#32323D</color>
+    <color name="black1">#FFFFFF</color>
+    <color name="grey7">#32323D</color>
+    <color name="main_text_color">#f2f2f2</color>
+    <color name="fragment_background">#1D1E24</color>
+</resources>
