@@ -1,27 +1,12 @@
 package dev.soul.kattabozor.presentation.extensions
 
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.navigation.fragment.findNavController
 import dev.soul.kattabozor.presentation.utils.LoadState
 import dev.soul.kattabozor.presentation.utils.observeOnStarted
-
-fun Fragment.popBackStack() {
-    findNavController().popBackStack()
-}
-
-fun Fragment.navigate(id: Int) {
-    findNavController().navigate(id)
-}
-
-fun Fragment.navigateWithArgs(id: Int, bundle: Bundle) {
-    findNavController().navigate(id, bundle)
-}
-
 
 fun LiveData<LoadState>.observeLoadState(
     fragment: Fragment,

@@ -10,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 import dev.soul.kattabozor.data.remote.MainApi
 import dev.soul.kattabozor.data.repository.MainRepositoryImpl
 import dev.soul.kattabozor.domain.repository.MainRepository
-import dev.soul.kattabozor.presentation.utils.SharedPreference
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -27,16 +26,8 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideEncryptedSharedPreference(
-        @ApplicationContext context: Context
-    ): SharedPreference =
-        SharedPreference.getInstance(context)
-
-    @Singleton
-    @Provides
     fun provideOkHttpClient(
         @ApplicationContext context: Context,
-        sharedPreference: SharedPreference
     ): OkHttpClient {
         val chuckInterceptor = ChuckerInterceptor.Builder(context)
             .maxContentLength(500_000L)
@@ -46,11 +37,6 @@ object NetworkModule {
             .addInterceptor(chuckInterceptor)
             .addNetworkInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader(
-                        "Authorization",
-                        "Bearer ${sharedPreference.token}"
-                    )
-                    .addHeader("lang", sharedPreference.lang)
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
                     .build()
